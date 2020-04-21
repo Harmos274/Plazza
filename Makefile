@@ -18,7 +18,7 @@ SRC_MAIN	=	main.cpp
 OBJ_MAIN	=	$(addprefix $(DIR), $(SRC_MAIN:.cpp=.o))
 
 DIR_TEST	=	./tests/
-SRC_TEST	=	
+SRC_TEST	=	catch2.cpp
 
 OBJ_TEST	=	$(addprefix $(DIR_TEST), $(SRC_TEST:.cpp=.o))
 
@@ -27,7 +27,7 @@ BINARY		=	plazza
 
 all: $(BINARY)
 
-$(BINARY_TEST):	CXXFLAGS += --coverage
+$(BINARY_TEST):	CXXFLAGS += --coverage -I./tests/include
 $(BINARY_TEST):	$(OBJ_SRC) $(OBJ_TEST)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 

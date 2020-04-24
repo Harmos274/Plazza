@@ -33,9 +33,9 @@ CheckOptions:
     value:           lower_case
 
 
-  - key:             readability-identifier-naming.TemplateParameterCase
+  - key:             readability-identifier-naming.TypeTemplateParameterCase
     value:           lower_case
-  - key:             readability-identifier-naming.TemplateParameterPrefix
+  - key:             readability-identifier-naming.TypeTemplateParameterPrefix
     value:           T_
 
 

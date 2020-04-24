@@ -41,3 +41,14 @@ plazza
 
 # End of https://www.gitignore.io/api/c++
 
+# Coverage files
+*.gcno
+*.gcda
+unit_tests
+
+# Clangd cache directory
+.clangd
+
+# Misc
+.gdb_history
+compile_commands.json

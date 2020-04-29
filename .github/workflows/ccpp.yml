@@ -12,24 +12,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
+      - name: Install G++9
+        run: .github/setup.sh
+
+      - name: Install SFML
+        run: .github/install_sfml.sh
+
       - name: BuildStandard
         shell: bash
         run: make
 
-        #tests:
-        #  name: Test Runner
-        #  runs-on: ubuntu-latest
-        #  steps:
-        #    - uses: actions/checkout@v2
+  tests:
+    name: Test Runner
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
 
-        #    - name: BuildTest
-        #      shell: bash
-        #      run: make tests_run
+      - name: Install G++9
+        run: .github/setup.sh
+
+      - name: Install SFML
+        run: .github/install_sfml.sh
+
+      - name: BuildTest
+        shell: bash
+        run: make tests_run
 
   deploy:
     name: Deploy
-    needs: [build] #, tests]
+    needs: [build, tests]
     runs-on: [ubuntu-latest]
     steps:
       - name: Set up ssh key

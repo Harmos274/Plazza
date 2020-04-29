@@ -8,11 +8,11 @@
 override CXXFLAGS	+=	-W -Wall -Wextra -I./include -std=c++2a
 override LDFLAGS	+=
 
-CXX_LOG		?=	[\033[32;1m\xe2\x9c\x93\033[0m] $<$(END) \033[31;1m\xe2\x9f\xb6\033[0m $@
+CXX_LOG		?=	[\033[32;1m✓\033[0m] $<$(END) \033[31;1m→\033[0m $@
 
 DIR			=	./src/
 
-SRC			=	
+SRC			=
 
 OBJ_SRC		=	$(addprefix $(DIR), $(SRC:.cpp=.o))
 

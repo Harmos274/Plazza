@@ -70,9 +70,9 @@ TEST_CASE("Recipe", "Using the recipes")
 
     SECTION("Using string to access a recipe")
     {
-        auto recipe = "Americana" >> marmiton;
+        auto recipe = "americana" >> marmiton;
 
-        REQUIRE(recipe.getName() == "Americana");
+        REQUIRE(recipe.getName() == "americana");
     }
 
     SECTION("Using invalid string to access a recipe")
@@ -82,9 +82,9 @@ TEST_CASE("Recipe", "Using the recipes")
 
     SECTION("Create a pizza from a recipe")
     {
-        auto recipe = "Margarita" >> marmiton;
+        auto recipe = "margarita" >> marmiton;
         auto pizza = recipe(size::XL);
 
-        REQUIRE(pizza.pack() == "Margarita XL : 🦌💀🍅🧀");
+        REQUIRE(pizza.pack() == "margarita XL : 🦌💀🍅🧀");
     }
 }

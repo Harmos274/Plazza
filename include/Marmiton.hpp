@@ -18,23 +18,23 @@
 namespace plazza
 {
 constexpr std::array marmiton{
-    pizzas::Recipe("Margarita",
+    pizzas::Recipe("margarita",
                    pizzas::ingredient::DOE | pizzas::ingredient::TOMATO |
                        pizzas::ingredient::GRUYERE,
                    pizzas::bakingTime{1}),
 
-    pizzas::Recipe("Regina",
+    pizzas::Recipe("regina",
                    pizzas::ingredient::DOE | pizzas::ingredient::TOMATO |
                        pizzas::ingredient::GRUYERE | pizzas::ingredient::HAM |
                        pizzas::ingredient::MUSHROOMS,
                    pizzas::bakingTime{2}),
 
-    pizzas::Recipe("Americana",
+    pizzas::Recipe("americana",
                    pizzas::ingredient::DOE | pizzas::ingredient::TOMATO |
                        pizzas::ingredient::GRUYERE | pizzas::ingredient::STEAK,
                    pizzas::bakingTime{2}),
 
-    pizzas::Recipe("Fantasia",
+    pizzas::Recipe("fantasia",
                    pizzas::ingredient::DOE | pizzas::ingredient::TOMATO |
                        pizzas::ingredient::EGGPLANT |
                        pizzas::ingredient::GOAT_CHEESE |

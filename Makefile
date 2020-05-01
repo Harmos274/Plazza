@@ -10,9 +10,14 @@ override LDFLAGS	+=
 
 CXX_LOG		?=	[\033[32;1m✓\033[0m] $<$(END) \033[31;1m→\033[0m $@
 
+CXX 		=	g++
+
 DIR			=	./src/
 
-SRC			=
+SRC			=	pizzas/Pizza.cpp \
+				pizzas/Ingredient.cpp \
+				pizzas/Recipe.cpp \
+				pizzas/Marmiton.cpp
 
 OBJ_SRC		=	$(addprefix $(DIR), $(SRC:.cpp=.o))
 
@@ -21,7 +26,8 @@ SRC_MAIN	=	main.cpp
 OBJ_MAIN	=	$(addprefix $(DIR), $(SRC_MAIN:.cpp=.o))
 
 DIR_TEST	=	./tests/
-SRC_TEST	=	catch2.cpp
+SRC_TEST	=	catch2.cpp \
+				pizza_tests.cpp
 
 OBJ_TEST	=	$(addprefix $(DIR_TEST), $(SRC_TEST:.cpp=.o))
 

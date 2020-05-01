@@ -5,6 +5,11 @@
 ### C++ ###
 
 plazza
+.clangd/
+compile_commands.json
+*.gcno
+*.gcda
+unit_tests
 
 # Prerequisites
 *.d

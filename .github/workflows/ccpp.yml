@@ -13,24 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install G++9
-        run: .github/setup.sh
-
       - name: Install SFML
         run: .github/install_sfml.sh
 
       - name: BuildStandard
         shell: bash
-        run: make
+        run: make -j2 || make
 
   tests:
     name: Test Runner
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
-      - name: Install G++9
-        run: .github/setup.sh
 
       - name: Install SFML
         run: .github/install_sfml.sh

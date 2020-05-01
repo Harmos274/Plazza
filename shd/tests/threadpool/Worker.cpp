@@ -14,7 +14,7 @@ auto get_value() -> int
 
 }
 
-TEST_CASE("Simple Worker test", "[Worker]")
+TEST_CASE("Simple Worker test", "[Worker][threadpool][shd]")
 {
     shd::threadpool::JobQueue queue;
 

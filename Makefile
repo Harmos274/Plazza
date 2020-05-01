@@ -5,7 +5,7 @@
 ## Plazza makefile
 ##
 
-override CXXFLAGS	+=	-W -Wall -Wextra -I./include -std=c++2a
+override CXXFLAGS	+=	-W -Wall -Wextra -I./include -std=c++17
 override LDFLAGS	+=
 
 CXX_LOG		?=	[\033[32;1m✓\033[0m] $<$(END) \033[31;1m→\033[0m $@
@@ -33,6 +33,7 @@ all: $(BINARY)
 SHD_PATH	=	./shd
 SHD_MODULES	=	GUI THREADPOOL
 include shd/shd.mk
+override CXXFLAGS	+=	${SHD_INCLUDE}
 
 $(BINARY_TEST):	CXXFLAGS	+= --coverage -I./tests/include
 $(BINARY_TEST):	LDFLAGS		+= --coverage

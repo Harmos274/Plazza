@@ -5,7 +5,7 @@
 #include <thread>
 #include <functional>
 
-#include <threadpool/JobQueue.hpp>
+#include <shd/threadpool/JobQueue.hpp>
 
 namespace shd::threadpool
 {

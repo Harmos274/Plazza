@@ -3,9 +3,9 @@
 
 #include <vector>
 
-#include <threadpool/Job.hpp>
-#include <threadpool/JobQueue.hpp>
-#include <threadpool/Worker.hpp>
+#include <shd/threadpool/Job.hpp>
+#include <shd/threadpool/JobQueue.hpp>
+#include <shd/threadpool/Worker.hpp>
 
 namespace shd
 {

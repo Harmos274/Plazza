@@ -1,4 +1,5 @@
 #!/bin/sh
+sudo apt update
 sudo apt-get install freeglut3-dev libudev-dev libopenal-dev libvorbis-dev libflac-dev libxrandr-dev
 
 git clone https://github.com/SFML/SFML.git

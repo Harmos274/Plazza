@@ -24,7 +24,7 @@ auto wait_and_get_value() -> int
 
 }
 
-TEST_CASE("Simple job push", "[ThreadPool]")
+TEST_CASE("Simple job push", "[ThreadPool][threadpool][shd]")
 {
     shd::ThreadPool pool{1};
 
@@ -33,7 +33,7 @@ TEST_CASE("Simple job push", "[ThreadPool]")
     REQUIRE(future.get() == 42);
 }
 
-TEST_CASE("Basic Job parallelization", "[ThreadPool][Time]")
+TEST_CASE("Basic Job parallelization", "[ThreadPool][Time][threadpool][shd]")
 {
     shd::ThreadPool pool{4};
 

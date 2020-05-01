@@ -2,7 +2,7 @@
 
 #include <WordIterator.hpp>
 
-TEST_CASE("Simple string iteration", "[WordIterator]")
+TEST_CASE("Simple string iteration", "[WordIterator][shd]")
 {
     auto iter = shd::WordIterator<' '>{"Thank you for summing that up"};
 
@@ -14,7 +14,7 @@ TEST_CASE("Simple string iteration", "[WordIterator]")
     REQUIRE(*(iter + 5) == "up");
 }
 
-TEST_CASE("Multiple separators", "[WordIterator]")
+TEST_CASE("Multiple separators", "[WordIterator][shd]")
 {
     auto iter =
         shd::WordIterator<' ', ';'>{";Thank you;for  ;summing ; that up "};
@@ -27,14 +27,14 @@ TEST_CASE("Multiple separators", "[WordIterator]")
     REQUIRE(*(iter + 5) == "up");
 }
 
-TEST_CASE("No separator", "[WordIterator]")
+TEST_CASE("No separator", "[WordIterator][shd]")
 {
     auto iter = shd::WordIterator{"Thank you for nothing, you useless reptile"};
 
     REQUIRE(*iter == "Thank you for nothing, you useless reptile");
 }
 
-TEST_CASE("Increment operators", "[WordIterator]")
+TEST_CASE("Increment operators", "[WordIterator][shd]")
 {
     auto iter = shd::WordIterator<' ', ','>{"Nightfury, get down"};
     auto original = shd::WordIterator{iter};
@@ -59,7 +59,7 @@ TEST_CASE("Increment operators", "[WordIterator]")
     REQUIRE(iter == plus_one);
 }
 
-TEST_CASE("Constexpr-ness", "[WordIterator]")
+TEST_CASE("Constexpr-ness", "[WordIterator][shd]")
 {
     constexpr auto iter = shd::WordIterator<' '>{"It's an occupational hazard"};
 

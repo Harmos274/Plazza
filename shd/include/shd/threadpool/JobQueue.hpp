@@ -5,7 +5,7 @@
 #include <mutex>
 #include <type_traits>
 
-#include <threadpool/Job.hpp>
+#include <shd/threadpool/Job.hpp>
 
 namespace shd::threadpool
 {

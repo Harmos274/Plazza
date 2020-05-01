@@ -1,5 +1,5 @@
 Checks: '
-    readability-*, -readability-implicit-bool-conversion,
+    readability-*, -readability-implicit-bool-conversion, -readability-magic-numbers, -readability-uppercase-literal-suffix,
     clang-analyzer-*, clang-analyzer-cplusplus*,
     modernize-*,
     performance-unnecessary-value-param'

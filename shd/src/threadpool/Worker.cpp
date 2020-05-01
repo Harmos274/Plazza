@@ -41,17 +41,17 @@ auto Worker::operator=(Worker&& rhs) noexcept -> Worker&
 
 auto Worker::setRunning(bool running) -> void
 {
-    this->keep_running.store(running, std::memory_order::relaxed);
+    this->keep_running.store(running, std::memory_order_relaxed);
 }
 
 auto Worker::isRunning() const noexcept -> bool
 {
-    return this->is_running.load(std::memory_order::relaxed);
+    return this->is_running.load(std::memory_order_relaxed);
 }
 
 auto Worker::loop() -> void
 {
-    while (this->keep_running.load(std::memory_order::relaxed) == true)
+    while (this->keep_running.load(std::memory_order_relaxed) == true)
     {
         auto job = this->queue.get().takeJob();
 
@@ -60,7 +60,7 @@ auto Worker::loop() -> void
             job->launch();
         }
     }
-    this->is_running.store(false);
+    this->is_running.store(false, std::memory_order_relaxed);
 }
 
 auto Worker::join() -> void

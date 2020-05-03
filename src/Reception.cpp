@@ -51,10 +51,22 @@ Reception::Reception(int ac, char const* const* av)
     }
 }
 
+auto Reception::deserializePizza(std::string const& serialized_pizza) -> pizzas::Pizza
+{
+    shd::WordIterator<' '> serial_selector{serialized_pizza};
+    auto const& recipe = *serial_selector >> marmiton;
+
+    ++serial_selector;
+    if (serial_selector == serial_selector.end())
+    {
+        throw DeserializingException("Fail to deserialize pizza.");
+    }
+    return recipe(Reception::strToPizzasize(*serial_selector));
+}
+
 auto Reception::strToPizzasize(std::string_view str) -> pizzas::size
 {
-    auto dict_str_pizzas =
-        std::array<std::pair<std::string_view, pizzas::size>, 5>{
+    auto dict_str_pizzas = std::array<std::pair<std::string_view, pizzas::size>, 5>{
             {{"S", pizzas::size::S},
              {"M", pizzas::size::M},
              {"L", pizzas::size::L},

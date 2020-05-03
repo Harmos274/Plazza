@@ -36,13 +36,13 @@ class Reception {
     Reception(int ac, char const* const* av);
     ~Reception() = default;
 
+    static auto deserializePizza(std::string const& serialized_pizza) -> pizzas::Pizza;
     static auto strToPizzasize(std::string_view str) -> pizzas::size;
     static auto parseOrder(std::string const& sorders) -> std::vector<Order>;
 
     [[nodiscard]] auto getMultiplier() const -> float const&;
     [[nodiscard]] auto getCookNbr() const -> unsigned int const&;
-    [[nodiscard]] auto getRestockTime() const
-        -> std::chrono::milliseconds const&;
+    [[nodiscard]] auto getRestockTime() const -> std::chrono::milliseconds const&;
 
   private:
     float multiplier;

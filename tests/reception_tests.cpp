@@ -71,3 +71,18 @@ TEST_CASE("Reception input parser", "input parser")
         CHECK(za[0].recipe.get().getName() == "fantasia");
     }
 }
+
+TEST_CASE("Receptiion deserializer", "input parser")
+{
+    SECTION("Well serialized string")
+    {
+        auto pizza = plazza::Reception::deserializePizza("margarita XL : 🦌💀🍅🧀");
+
+        CHECK(pizza.getName() == "margarita");
+        CHECK(pizza.getSize() == plazza::pizzas::size::XL);
+    }
+    SECTION("Bad string")
+    {
+        CHECK_THROWS(plazza::Reception::deserializePizza("mar"));
+    }
+}

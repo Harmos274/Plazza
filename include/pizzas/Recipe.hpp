@@ -21,6 +21,7 @@ class Recipe {
         name{name},
         ingredients{ingredients},
         baking_time{baking_time} {}
+    Recipe(Recipe const& copied) = delete;
     ~Recipe() = default;
 
     auto operator()(enum size size) const -> Pizza;

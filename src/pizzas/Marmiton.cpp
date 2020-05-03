@@ -10,7 +10,7 @@
 
 namespace plazza
 {
-auto operator>>(std::string_view pizza_name, Marmiton marmiton) -> pizzas::Recipe const&
+auto operator>>(std::string_view pizza_name, Marmiton const& marmiton) -> pizzas::Recipe const&
 {
     auto const* recipe = std::find_if(marmiton.begin(), marmiton.end(),
             [pizza_name](auto const& recipe) {
@@ -19,7 +19,7 @@ auto operator>>(std::string_view pizza_name, Marmiton marmiton) -> pizzas::Recip
 
     if (recipe == marmiton.end())
     {
-        throw RecipeException("Can't find pizza recipe on Marmiton.");
+        throw RecipeException("Can't find pizza recipe \"" + std::string(pizza_name) + "\" on Marmiton.");
     }
     return *recipe;
 }

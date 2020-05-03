@@ -5,13 +5,20 @@
 ** main
 */
 
-int main(int ac, char* const av[])
-{
-    int ret = 0; // plazza::plazza(ac, av)
+#include "Reception.hpp"
+#include "exception.hpp"
+#include <iostream>
 
-    if (ret)
+auto main(int ac, char const* av[]) -> int
+{
+    try
     {
-        ret = 84;
+        plazza::Reception(ac, av);
+
+    } catch (plazza::Exception const& e)
+    {
+        std::cerr << e.what() << std::endl;
+        return 84;
     }
-    return (ret);
+    return 0;
 }

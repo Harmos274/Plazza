@@ -17,7 +17,8 @@ DIR			=	./src/
 SRC			=	pizzas/Pizza.cpp \
 				pizzas/Ingredient.cpp \
 				pizzas/Recipe.cpp \
-				pizzas/Marmiton.cpp
+				pizzas/Marmiton.cpp \
+				Reception.cpp
 
 OBJ_SRC		=	$(addprefix $(DIR), $(SRC:.cpp=.o))
 
@@ -27,7 +28,8 @@ OBJ_MAIN	=	$(addprefix $(DIR), $(SRC_MAIN:.cpp=.o))
 
 DIR_TEST	=	./tests/
 SRC_TEST	=	catch2.cpp \
-				pizza_tests.cpp
+				pizza_tests.cpp \
+				reception_tests.cpp
 
 OBJ_TEST	=	$(addprefix $(DIR_TEST), $(SRC_TEST:.cpp=.o))
 

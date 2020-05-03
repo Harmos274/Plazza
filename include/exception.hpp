@@ -48,6 +48,13 @@ class RecipeException : public Exception {
         Exception("Recipe exception : " + what){};
 };
 
+
+class ArgumentException : public Exception {
+  public:
+    ArgumentException(std::string const& what) :
+        Exception("Argument exception : " + what){};
+};
+
 }
 
 #endif

@@ -7,17 +7,14 @@ namespace shd::threadpool
 {
 
 Worker::Worker(JobQueue& queue)
-    : thread{&Worker::loop, this},
-      keep_running{true},
-      is_running{true},
-      queue{queue}
+    : keep_running{true}, is_running{true}, queue{queue}, thread{&Worker::loop, this}
 {
 }
 
 Worker::Worker(Worker&& to_move) noexcept
-    : thread{std::move(to_move.thread)},
-      keep_running{to_move.keep_running.load()},
-      queue{to_move.queue}
+    : keep_running{to_move.keep_running.load()},
+      queue{to_move.queue},
+      thread{std::move(to_move.thread)}
 {
 }
 

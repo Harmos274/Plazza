@@ -1,3 +1,6 @@
+#ifndef SHD_GUI_WINDOW
+#define SHD_GUI_WINDOW
+
 #include <string>
 
 #include <imgui.h>
@@ -40,6 +43,11 @@ public:
         return displayed;
     }
 
+    auto setName(std::string const& new_name)
+    {
+        this->name = new_name;
+    }
+
 private:
     T_widget widget;
 
@@ -48,3 +56,5 @@ private:
 };
 
 }
+
+#endif

@@ -33,4 +33,9 @@ ThreadPool::~ThreadPool()
     }
 }
 
+auto ThreadPool::size() const noexcept -> size_t
+{
+    return this->workers.size();
+}
+
 }

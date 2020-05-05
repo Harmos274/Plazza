@@ -1,3 +1,7 @@
+#ifndef SHD_GUI_FULLSCREENWINDOW
+#define SHD_GUI_FULLSCREENWINDOW
+
+#include <functional>
 #include <string>
 
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -39,7 +43,7 @@ public:
         ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
         ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.f);
 
-        auto size = this->window.getSize();
+        auto size = this->window.get().getSize();
         ImGui::SetNextWindowSize(ImVec2(size.x, size.y));
         ImGui::SetNextWindowPos({0, 0});
 
@@ -63,7 +67,9 @@ private:
     std::string name;
     ImGuiWindowFlags flags;
 
-    sf::RenderWindow const& window;
+    std::reference_wrapper<sf::RenderWindow const> window;
 };
 
 }
+
+#endif

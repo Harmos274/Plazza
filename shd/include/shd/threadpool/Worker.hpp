@@ -28,10 +28,10 @@ private:
 
     auto join() -> void;
 
-    std::thread thread;
     std::atomic<bool> keep_running;
     std::atomic<bool> is_running;
     std::reference_wrapper<JobQueue> queue;
+    std::thread thread;
 };
 
 }

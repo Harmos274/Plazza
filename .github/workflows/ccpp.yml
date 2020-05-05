@@ -31,7 +31,7 @@ jobs:
 
       - name: BuildTest
         shell: bash
-        run: make tests_run
+        run: (make unit_tests -j2 || make unit_tests) && ./unit_tests "~[Time]"
 
   deploy:
     name: Deploy

@@ -25,6 +25,8 @@ public:
                                 std::forward<T_args>(args)...);
     }
 
+    [[nodiscard]] auto size() const noexcept -> size_t;
+
 private:
     threadpool::JobQueue queue;
     std::vector<threadpool::Worker> workers;

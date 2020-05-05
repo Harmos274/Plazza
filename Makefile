@@ -14,11 +14,19 @@ CXX 		=	g++
 
 DIR			=	./src/
 
-SRC			=	pizzas/Pizza.cpp \
-				pizzas/Ingredient.cpp \
-				pizzas/Recipe.cpp \
-				pizzas/Marmiton.cpp \
-				Reception.cpp
+SRC			=	pizzas/Pizza.cpp			\
+				pizzas/Ingredient.cpp		\
+				pizzas/Recipe.cpp			\
+				pizzas/Marmiton.cpp			\
+				IngredientStock.cpp			\
+				Kitchen.cpp					\
+				KitchenFork.cpp				\
+				KitchenForkPool.cpp			\
+				KitchenManager.cpp			\
+				Reception.cpp				\
+				Fork.cpp					\
+				GuiWindow.cpp				\
+				Pipe.cpp
 
 OBJ_SRC		=	$(addprefix $(DIR), $(SRC:.cpp=.o))
 

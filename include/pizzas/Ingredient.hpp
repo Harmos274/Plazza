@@ -8,11 +8,11 @@
 #ifndef INGREDIENT_HPP_
 #define INGREDIENT_HPP_
 
-#include <iostream>
+#include <ostream>
 
 namespace plazza::pizzas
 {
-enum class ingredient
+enum class ingredient : unsigned int
 {
     DOE         = 1 << 0,
     TOMATO      = 1 << 1,

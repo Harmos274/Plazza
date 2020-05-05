@@ -15,6 +15,7 @@
 
 #include <ipc.hpp>
 #include <ipc_action.hpp>
+#include <exception.hpp>
 
 namespace plazza
 {
@@ -58,7 +59,7 @@ public:
 
         if (read_bytes != sizeof(T_rcv))
         {
-            throw std::exception{};
+            throw plazza::PipeException("invalid or incomplete read from receiver.");
         }
 
         return ret;
@@ -75,7 +76,7 @@ public:
 
         if (!status)
         {
-            throw std::exception{};
+            throw plazza::SystemException("fail to write on output.");
         }
     }
 

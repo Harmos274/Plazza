@@ -55,6 +55,18 @@ class ArgumentException : public Exception {
         Exception("Argument exception : " + what){};
 };
 
+class PipeException : public Exception {
+  public:
+    PipeException(std::string const& what) :
+        Exception("Pipe exception : " + what){};
+};
+
+class SystemException : public Exception {
+  public:
+    SystemException(std::string const& what) :
+        Exception("Sytem exception : " + what){};
+};
+
 }
 
 #endif

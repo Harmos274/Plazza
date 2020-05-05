@@ -14,6 +14,8 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#include <exception.hpp>
+
 namespace plazza
 {
 
@@ -25,7 +27,7 @@ public:
     {
         if (this->pid == -1)
         {
-            throw std::exception{};
+            throw plazza::PipeException("invalid pid.");
         }
         if (this->pid == 0)
         {

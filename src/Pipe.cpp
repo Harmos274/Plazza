@@ -12,6 +12,7 @@
 #include <poll.h>
 
 #include <Pipe.hpp>
+#include <exception.hpp>
 
 namespace plazza
 {
@@ -66,11 +67,11 @@ auto Pipe::receive(size_t size) -> std::string
 
     if (read_bytes == -1)
     {
-        throw std::exception{};
+        throw plazza::SystemException("fail to read input.");
     }
     if (read_bytes != static_cast<long>(size))
     {
-        throw std::exception{};
+        throw plazza::PipeException("incomplete read from input.");
     }
 
     return ret;
@@ -100,7 +101,7 @@ void Pipe::send(std::string const& to_send)
 
     if (!status)
     {
-        throw std::exception{};
+        throw plazza::SystemException("fail to write on output.");
     }
 }
 

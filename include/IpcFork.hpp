@@ -20,7 +20,7 @@ class IpcFork
 {
 public:
     template <typename T_function, typename... T_args>
-    IpcFork(Pipe ipc, T_function&& function, T_args&&... arguments) noexcept
+    IpcFork(Pipe ipc, T_function&& function, T_args&&... arguments)
         : ipc{std::move(ipc)},
           fork{std::forward<T_function>(function),
                this->ipc.getOtherEnd(),
@@ -29,7 +29,7 @@ public:
     }
 
     template <typename T_function, typename... T_args>
-    IpcFork(T_function&& function, T_args&&... arguments) noexcept
+    IpcFork(T_function&& function, T_args&&... arguments)
         : ipc{},
           fork{std::forward<T_function>(function),
                this->ipc.getOtherEnd(),

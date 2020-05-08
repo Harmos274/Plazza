@@ -36,7 +36,7 @@ auto main(int ac, char** av) -> int
 
             kitchens.cull();
 
-            gui_window.update(kitchens);
+            gui_window.update(kitchens, window.getSize());
 
             window.display();
         }

@@ -154,9 +154,12 @@ auto Kitchen::collectFinishedOrders() noexcept -> std::vector<pizzas::Pizza>
     return ret;
 }
 
-auto Kitchen::infoString() const noexcept -> std::string
+auto Kitchen::infoString() noexcept -> std::string
 {
-    auto ret = std::string{};
+    auto ret = std::string{this->stock.infoString()};
+
+    ret.append(1, '\n');
+    auto original_size = ret.size();
 
     for (auto const& order : this->orders)
     {
@@ -172,18 +175,18 @@ auto Kitchen::infoString() const noexcept -> std::string
             .append(std::to_string(percentage))
             .append("%\n");
     }
-    if (!ret.empty())
+    if (ret.size() > original_size)
     {
         ret.pop_back();
     }
     else
     {
-        ret.assign("This kitchen is inactive");
+        ret.append("This kitchen is inactive");
     }
     return ret;
 }
 
-auto Kitchen::getStock() const noexcept -> IngredientStock const&
+auto Kitchen::getStock() noexcept -> IngredientStock&
 {
     return this->stock;
 }

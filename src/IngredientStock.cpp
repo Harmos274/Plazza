@@ -5,6 +5,8 @@
 ** IngredientStock source file
 */
 
+#include <string>
+
 #include <IngredientStock.hpp>
 
 namespace plazza
@@ -35,8 +37,10 @@ auto IngredientStock::update() noexcept -> void
 }
 
 auto IngredientStock::hasIngredient(
-    pizzas::ingredientsBitset ingredients) const noexcept -> bool
+    pizzas::ingredientsBitset ingredients) noexcept -> bool
 {
+    this->update();
+
     size_t pos = 0;
 
     while (pos < this->stock.size())
@@ -53,6 +57,8 @@ auto IngredientStock::hasIngredient(
 auto IngredientStock::consumeIngredients(
     pizzas::ingredientsBitset ingredients) noexcept -> void
 {
+    this->update();
+
     size_t pos = 0;
 
     while (pos < this->stock.size())
@@ -63,6 +69,21 @@ auto IngredientStock::consumeIngredients(
         }
         ++pos;
     }
+}
+
+auto IngredientStock::infoString() noexcept-> std::string
+{
+    this->update();
+
+    auto ret = std::string{"Ingredients : "};
+
+    for (auto value : this->stock)
+    {
+        ret.append(std::to_string(value)).append(1, ' ');
+    }
+    ret.pop_back();
+
+    return ret;
 }
 
 }

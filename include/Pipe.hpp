@@ -11,11 +11,12 @@
 #include <array>
 #include <chrono>
 
+#include <string>
 #include <unistd.h>
 
+#include <exception.hpp>
 #include <ipc.hpp>
 #include <ipc_action.hpp>
-#include <exception.hpp>
 
 namespace plazza
 {
@@ -39,7 +40,11 @@ private:
 class Pipe
 {
 public:
-    Pipe() noexcept;
+    Pipe();
+    Pipe(FileDescriptor in,
+         FileDescriptor out,
+         FileDescriptor second_in,
+         FileDescriptor second_out);
     Pipe(Pipe&& to_move) noexcept = default;
     ~Pipe() = default;
 
@@ -59,7 +64,13 @@ public:
 
         if (read_bytes != sizeof(T_rcv))
         {
-            throw plazza::PipeException("invalid or incomplete read from receiver.");
+            throw plazza::SystemException(
+                std::string{"Pipe : read returned "}
+                    .append(std::to_string(read_bytes))
+                    .append(" when trying to read ")
+                    .append(std::to_string(sizeof(T_rcv)))
+                    .append(" bytes")
+                    .append(std::to_string(this->input.getHandle())));
         }
 
         return ret;
@@ -70,13 +81,16 @@ public:
     {
         static_assert(std::is_scalar_v<T_snd>);
 
-        bool status =
-            write(this->output.getHandle(), &to_send, sizeof(T_snd)) ==
-            sizeof(T_snd);
+        long written = write(this->output.getHandle(), &to_send, sizeof(T_snd));
 
-        if (!status)
+        if (written != sizeof(T_snd))
         {
-            throw plazza::SystemException("fail to write on output.");
+            throw plazza::SystemException(
+                std::string{"Pipe : write returned "}
+                    .append(std::to_string(written))
+                    .append(" when trying to write ")
+                    .append(std::to_string(sizeof(T_snd)))
+                    .append(" bytes"));
         }
     }
 
@@ -95,6 +109,8 @@ private:
     FileDescriptor second_output;
 };
 
-};
+auto make_fifo(size_t id) -> Pipe;
+
+}
 
 #endif

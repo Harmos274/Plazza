@@ -65,9 +65,9 @@ public:
     auto collectFinishedOrders() noexcept -> std::vector<pizzas::Pizza>;
     [[nodiscard]] auto getOrders() const noexcept -> std::vector<Order> const&;
 
-    [[nodiscard]] auto infoString() const noexcept -> std::string;
+    [[nodiscard]] auto infoString() noexcept -> std::string;
 
-    [[nodiscard]] auto getStock() const noexcept -> IngredientStock const&;
+    [[nodiscard]] auto getStock() noexcept -> IngredientStock&;
 
     [[nodiscard]] auto hasRoom() const noexcept -> bool;
 

@@ -5,12 +5,15 @@
 ** KichenFork source file
 */
 
+#include <iostream>
+
 #include <KitchenFork.hpp>
+#include <Pipe.hpp>
 
 namespace plazza
 {
 
-namespace 
+namespace
 {
 
 auto kitchen_process(Pipe ipc,
@@ -18,9 +21,17 @@ auto kitchen_process(Pipe ipc,
                      double time_multiplier,
                      IngredientStock::RegenTime regen) -> void
 {
-    KitchenManager manager{cook_nbr, regen, std::move(ipc), time_multiplier};
+    try
+    {
+        KitchenManager manager{
+            cook_nbr, regen, std::move(ipc), time_multiplier};
 
-    manager.run();
+        manager.run();
+    }
+    catch (std::exception const& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 }
 
 }
@@ -28,7 +39,7 @@ auto kitchen_process(Pipe ipc,
 KitchenFork::KitchenFork(size_t cook_nbr,
                          double time_multiplier,
                          IngredientStock::RegenTime regen,
-                         size_t id) noexcept
+                         size_t id)
     : IpcFork{kitchen_process, cook_nbr, time_multiplier, regen},
       last_pizza{ClockType::now()},
       id{id}
@@ -62,7 +73,7 @@ auto KitchenFork::getState() noexcept -> std::string&
     return this->latest_state;
 }
 
-auto KitchenFork::putOrder(Reception::Order const& order) -> pizzas::bakingTime
+auto KitchenFork::putOrder(Reception::Order const& order) -> void
 {
     auto msg = std::string{order.recipe.get().getName()}.append(1, ' ').append(
         Reception::pizzaSizeToStr(order.size));
@@ -70,7 +81,10 @@ auto KitchenFork::putOrder(Reception::Order const& order) -> pizzas::bakingTime
     this->ipc.send(reception_action::putOrder);
     this->ipc.send(msg.size());
     this->ipc.send(msg);
+}
 
+auto KitchenFork::getOrderResponse() -> pizzas::bakingTime
+{
     auto action = std::optional<kitchen_action>{std::nullopt};
 
     while (!action.has_value() || action.value() != kitchen_action::answerOrder)
@@ -92,6 +106,11 @@ auto KitchenFork::confirmOrder() -> void
     ++this->current_orders;
 
     this->ipc.send(reception_action::confirmOrder);
+}
+
+auto KitchenFork::requestState() -> void
+{
+    this->ipc.send(reception_action::requestState);
 }
 
 auto KitchenFork::updateState() -> std::optional<kitchen_action>

@@ -31,7 +31,11 @@ auto KitchenForkPool::pushOrder(const Reception::Order& order) -> void
 
         for (auto& kitchen : this->kitchen_forks)
         {
-            delays.push_back(kitchen.putOrder(order));
+            kitchen.putOrder(order);
+        }
+        for (auto& kitchen : this->kitchen_forks)
+        {
+            delays.push_back(kitchen.getOrderResponse());
         }
 
         auto min = std::min_element(delays.begin(), delays.end());
@@ -50,12 +54,11 @@ auto KitchenForkPool::pushOrder(const Reception::Order& order) -> void
                                          this->regen_time,
                                          this->getNewForkId());
         this->kitchen_forks.back().putOrder(order);
-        this->kitchen_forks.back().confirmOrder();
+        this->kitchen_forks.back().getOrderResponse();
+        iter = this->kitchen_forks.begin() + (this->kitchen_forks.size() - 1);
     }
-    else
-    {
-        iter->confirmOrder();
-    }
+
+    iter->confirmOrder();
 
     for (auto& kitchen : this->kitchen_forks)
     {

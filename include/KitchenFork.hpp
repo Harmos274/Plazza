@@ -25,7 +25,7 @@ public:
     KitchenFork(size_t cook_nbr,
                 double time_multiplier,
                 IngredientStock::RegenTime regen,
-                size_t id) noexcept;
+                size_t id);
     KitchenFork(KitchenFork const& to_copy) noexcept = delete;
     KitchenFork(KitchenFork&& to_move) noexcept = default;
     ~KitchenFork() noexcept
@@ -40,9 +40,11 @@ public:
 
     auto getState() noexcept -> std::string&;
 
-    auto putOrder(Reception::Order const& order) -> pizzas::bakingTime;
+    auto putOrder(Reception::Order const& order) -> void;
+    auto getOrderResponse() -> pizzas::bakingTime;
     auto cancelOrder() -> void;
     auto confirmOrder() -> void;
+    auto requestState() -> void;
 
     auto updateState() -> std::optional<kitchen_action>;
 

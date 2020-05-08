@@ -84,6 +84,15 @@ auto KitchenManager::processEvents() noexcept
 
         case reception_action::close:
             this->running = false;
+            break;
+
+        case reception_action::requestState:
+            auto state = kitchen.infoString();
+
+            this->ipc.send(kitchen_action::sendState);
+            this->ipc.send(state.size());
+            this->ipc.send(state);
+            break;
         }
 
         has_data = ipc.inputHasData();
@@ -111,11 +120,6 @@ auto KitchenManager::run() -> void
             this->ipc.send(tmp.size());
             this->ipc.send(tmp);
         }
-
-        auto state = kitchen.infoString();
-        this->ipc.send(kitchen_action::sendState);
-        this->ipc.send(state.size());
-        this->ipc.send(state);
     }
 }
 

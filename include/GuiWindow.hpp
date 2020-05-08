@@ -5,6 +5,8 @@
 ** GuiWindow header
 */
 
+#include <fstream>
+
 #include <shd/gui/FullscreenWindow.hpp>
 #include <shd/gui/Window.hpp>
 
@@ -56,19 +58,20 @@ public:
     };
 
     GuiWindow(sf::RenderWindow const& sfml_window) noexcept;
-    GuiWindow(GuiWindow const& to_copy) noexcept = default;
+    GuiWindow(GuiWindow const& to_copy) noexcept = delete;
     GuiWindow(GuiWindow&& to_move) noexcept = default;
     ~GuiWindow() noexcept = default;
 
-    auto operator=(GuiWindow const& rhs) noexcept -> GuiWindow& = default;
+    auto operator=(GuiWindow const& rhs) noexcept -> GuiWindow& = delete;
     auto operator=(GuiWindow&& rhs) noexcept -> GuiWindow& = default;
 
-    auto update(KitchenForkPool& kitchens) noexcept -> void;
+    auto update(KitchenForkPool& kitchens, sf::Vector2u window_size) -> void;
 
 private:
     shd::gui::FullscreenWindow<InputWidget> input_window;
     shd::gui::Window<DisplayWidget> display_window;
     std::reference_wrapper<sf::RenderWindow const> sfml_window;
+    std::ofstream logger;
 };
 
 }

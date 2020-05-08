@@ -34,10 +34,12 @@ public:
     auto update() noexcept -> void;
 
     [[nodiscard]] auto hasIngredient(
-        pizzas::ingredientsBitset ingredients) const noexcept -> bool;
+        pizzas::ingredientsBitset ingredients) noexcept -> bool;
 
     auto consumeIngredients(pizzas::ingredientsBitset ingredients) noexcept
         -> void;
+
+    [[nodiscard]] auto infoString() noexcept -> std::string;
 
 private:
     using ClockType = std::chrono::system_clock;

@@ -23,7 +23,8 @@ enum class reception_action : unsigned char
     putOrder,
     confirmOrder,
     cancelOrder,
-    close
+    close,
+    requestState
 };
 
 }
